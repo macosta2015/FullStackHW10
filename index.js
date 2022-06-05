@@ -110,21 +110,22 @@ ${response.Manager}
                 name: 'License',
                 message: 'Which licenses are used in the project? ',
                 choices: ['MIT','Academic Free License v3.0','Do What The F*ck You Want To Public License', 'Educational Community License', 'PostgreSQL License', 'Mozilla Public License 2.0','PostgreSQL License']
-            },
-            {
-                name: 'GithubName', 
-                message: 'What is the Githubname '
-            },
-            {
-                name: 'Email', 
-                message: 'What is your email so that they can reach out? '
-            },
-            {
-                type: 'password', 
-                name: 'secretText',
-                message: 'Is there a secret password in the project: ',
-                mask: "*"
             }
+            // ,
+            // {
+            //     name: 'GithubName', 
+            //     message: 'What is the Githubname '
+            // },
+            // {
+            //     name: 'Email', 
+            //     message: 'What is your email so that they can reach out? '
+            // },
+            // {
+            //     type: 'password', 
+            //     name: 'secretText',
+            //     message: 'Is there a secret password in the project: ',
+            //     mask: "*"
+            // }
         ])
 }
 
