@@ -2,6 +2,9 @@
 
 const fs = require('fs');
 const inquirer = require('inquirer');
+const Manager = require('./assets/Manager')
+const Intern = require('./assets/Intern')
+const Engineer = require('./assets/Engineer')
 
 
 const createReadme = (response) =>
@@ -16,7 +19,9 @@ const createReadme = (response) =>
     background-color: lightgrey;
     width: 300px;
     padding: 50px;
-    margin: 20px;
+    margin: auto;
+    /* <p>To horizontally center a block element (like div), use margin: auto;</p> */
+
 }
 </style>
 </head>
@@ -25,17 +30,25 @@ const createReadme = (response) =>
 <h2>Center Text</h2>
 
 <div class="center">
-<p>This text is centered.</p>
+<p>This Manager's name is.</p>
 ${response.Manager}
 </div>
 
 <div class="center">
 <p>This text is centered.</p>
+${response.Engineer}
 </div>
 
 <div class="center">
 <p>This text is centered.</p>
+${response.Interns}
 </div>
+
+<div class="center">
+<p>The next Team member is:</p>
+${response.TeamMember}
+</div>
+
 
 </body>
 </html>
@@ -43,14 +56,8 @@ ${response.Manager}
 `
 
 // `
-// # The Titles's name is:
-// #### ${response.Manager}
-
-// # The description is:
-// #### ${response.Description}
-
-// # The installation is:
-// #### ${response.Installation}
+// # The Interns is:
+// #### ${response.Interns}
 
 // # The usage information name is:
 // #### ${response.UsageInformation}
@@ -72,7 +79,7 @@ ${response.Manager}
 // #### ${response.Email}
 
 // # The password is:
-// #### ${response.rawlist}
+// #### ${response.TeamMember}
 
 // # The secret text is:
 // #### ${response.secretText}
@@ -84,33 +91,46 @@ ${response.Manager}
             {
                 name: 'Manager', 
                 message: 'What is the managers name? '
-            },
+            }
+            ,
             {
-                name: 'Description', 
-                message: 'What is description of the project? '
-            },
+                name: 'Engineer', 
+                message: 'What is the Engineers name? '
+            }
+            ,
             {
-                name: 'Installation', 
-                message: 'How to installation  the project? '
-            },
+                type: 'rawlist', 
+                name: 'TeamMember',
+                message: 'Which licenses are used in the project? ',
+                choices: ['Engineer','Intern','None']
+            }
+            ,
+            {
+                name: 'Interns', 
+                message: 'How is the interns name? '
+            }
+            ,
             {
                 name: 'UsageInformation', 
                 message: 'What is usage information of the project? '
-            },
+            }
+            ,
             {
                 name: 'ConstributionGuidelines', 
                 message: 'What are the contributions of of the project? '
-            },
+            }
+            ,
             {
                 name: 'TestInstructions', 
                 message: 'What are the test instructions of the project? '
-            },
-            {
-                type: 'rawlist', 
-                name: 'License',
-                message: 'Which licenses are used in the project? ',
-                choices: ['MIT','Academic Free License v3.0','Do What The F*ck You Want To Public License', 'Educational Community License', 'PostgreSQL License', 'Mozilla Public License 2.0','PostgreSQL License']
             }
+            // ,
+            // {
+            //     type: 'rawlist', 
+            //     name: 'TeamMember',
+            //     message: 'Which licenses are used in the project? ',
+            //     choices: ['Engineer','Intern','Manager']
+            // }
             // ,
             // {
             //     name: 'GithubName', 
