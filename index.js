@@ -10,21 +10,31 @@ const createReadme = (response) =>
 <html>
 <head>
 <style>
-div {
+.center {
+    text-align: center;
+    border: 3px solid green;
     background-color: lightgrey;
     width: 300px;
-    border: 15px solid green;
     padding: 50px;
     margin: 20px;
 }
 </style>
 </head>
 <body>
-<div>
-Testing if we can get the manager's name into HTML:
-${response.Manager}
 
-The picture above is 350px wide. The total width of this element is also 350px.
+<h2>Center Text</h2>
+
+<div class="center">
+<p>This text is centered.</p>
+${response.Manager}
+</div>
+
+<div class="center">
+<p>This text is centered.</p>
+</div>
+
+<div class="center">
+<p>This text is centered.</p>
 </div>
 
 </body>
@@ -34,7 +44,7 @@ The picture above is 350px wide. The total width of this element is also 350px.
 
 // `
 // # The Titles's name is:
-// #### ${response.Title}
+// #### ${response.Manager}
 
 // # The description is:
 // #### ${response.Description}
