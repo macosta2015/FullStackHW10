@@ -85,7 +85,7 @@ ${response.TeamMember}
 // #### ${response.secretText}
 // `
 ;
-    function readmeQuestions() {
+    function managerQuestions() {
     return inquirer
     .prompt([
             {
@@ -104,26 +104,84 @@ ${response.TeamMember}
                 message: 'Which licenses are used in the project? ',
                 choices: ['Engineer','Intern','None']
             }
-            ,
-            {
-                name: 'Interns', 
-                message: 'How is the interns name? '
-            }
-            ,
-            {
-                name: 'UsageInformation', 
-                message: 'What is usage information of the project? '
-            }
-            ,
-            {
-                name: 'ConstributionGuidelines', 
-                message: 'What are the contributions of of the project? '
-            }
-            ,
-            {
-                name: 'TestInstructions', 
-                message: 'What are the test instructions of the project? '
-            }
+        ])
+    }
+
+    function teamQuestions(){
+        console.log('Is this running?')
+        return inquirer
+        .prompt([
+                {
+                    name: 'Manager', 
+                    message: 'What is the managers name? '
+                }
+            ])
+    }
+
+
+    async function init() {
+        console.log('Calling');
+        const managerWait = await managerQuestions()
+        const teamWait = await teamQuestions()
+
+        .then((response) => fs.writeFile('index.html', createReadme(response), (err) =>
+        err ? console.error(err) : console.log('HTML file was succesfully created')));
+        console.log('After the call')
+        // .then((response) => fs.writeFile('index.html', createReadme(response), (err) =>
+        // err ? console.error(err) : console.log('HTML file was succesfully created')));
+
+    }
+
+    init()
+    
+
+
+
+
+        // ]).then((userChoice)=>{
+        //     switch(userChoice.ListOptions){
+        //         case 'Add an Engineer':
+        //             console.log('Engineering')
+        //         // Engineer();
+        //         break;
+                
+        //         case 'Add an Intern':
+        //             console.log('Intern')
+        //         // Intern();
+        //         break;
+
+        //         case 'None':
+        //             console.log('None')
+        //         // finishedTeam();
+        //         break;
+        //     }
+        //     }).catch(err=>{
+        //     if(err){
+        //         console.log(`Something went wrong when choosing to add team members`);
+        //     }
+        // })
+    // } 
+    
+            // ,
+            // {
+            //     name: 'Interns', 
+            //     message: 'How is the interns name? '
+            // }
+            // ,
+            // {
+            //     name: 'UsageInformation', 
+            //     message: 'What is usage information of the project? '
+            // }
+            // ,
+            // {
+            //     name: 'ConstributionGuidelines', 
+            //     message: 'What are the contributions of of the project? '
+            // }
+            // ,
+            // {
+            //     name: 'TestInstructions', 
+            //     message: 'What are the test instructions of the project? '
+            // }
             // ,
             // {
             //     type: 'rawlist', 
@@ -146,16 +204,6 @@ ${response.TeamMember}
             //     message: 'Is there a secret password in the project: ',
             //     mask: "*"
             // }
-        ])
-}
 
-    function init() {
-        readmeQuestions()
-        .then((response) => fs.writeFile('index.html', createReadme(response), (err) =>
-        // .then((response) => fs.writeFile('Readme.md', createReadme(response), (err) =>
-        err ? console.error(err) : console.log('Readme file was succesfully created')));
-    }
-
-    init()
 
 
