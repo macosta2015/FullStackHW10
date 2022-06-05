@@ -4,54 +4,76 @@ const fs = require('fs');
 const inquirer = require('inquirer');
 
 
-const createReadme = (response) => `
+const createReadme = (response) =>
+`
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+div {
+    background-color: lightgrey;
+    width: 300px;
+    border: 15px solid green;
+    padding: 50px;
+    margin: 20px;
+}
+</style>
+</head>
+<body>
+<div>
+Testing if we can get the manager's name into HTML:
+${response.Manager}
 
-# The Titles's name is:
-#### ${response.Title}
+The picture above is 350px wide. The total width of this element is also 350px.
+</div>
 
-# The description is:
-#### ${response.Description}
+</body>
+</html>
 
-# The installation is:
-#### ${response.Installation}
+`
 
-# The usage information name is:
-#### ${response.UsageInformation}
+// `
+// # The Titles's name is:
+// #### ${response.Title}
 
-# The Constribution Guidelines is:
-#### ${response.ConstributionGuidelines}
+// # The description is:
+// #### ${response.Description}
 
-# The Test Instructions Guidelines is:
-#### ${response.TestInstructions}
+// # The installation is:
+// #### ${response.Installation}
 
-# The License used is:
-#### ${response.License}
+// # The usage information name is:
+// #### ${response.UsageInformation}
 
-# The Github Account is:
-#### ${response.GithubName}
-https://github.com/${response.GithubName}
+// # The Constribution Guidelines is:
+// #### ${response.ConstributionGuidelines}
 
-# Please reach out to the following email:
-#### ${response.Email}
+// # The Test Instructions Guidelines is:
+// #### ${response.TestInstructions}
 
-# The password is:
-#### ${response.rawlist}
+// # The License used is:
+// #### ${response.License}
 
-# The secret text is:
-#### ${response.secretText}
+// # The Github Account is:
+// #### ${response.GithubName}
+// https://github.com/${response.GithubName}
 
-`;
+// # Please reach out to the following email:
+// #### ${response.Email}
+
+// # The password is:
+// #### ${response.rawlist}
+
+// # The secret text is:
+// #### ${response.secretText}
+// `
+;
     function readmeQuestions() {
     return inquirer
     .prompt([
-            // {
-            //     message: 'What is your favorite color? ',
-            //     default: 'blue',
-            //     name: 'color'
-            // },
             {
-                name: 'Title', 
-                message: 'What is title of the project? '
+                name: 'Manager', 
+                message: 'What is the managers name? '
             },
             {
                 name: 'Description', 
@@ -94,17 +116,12 @@ https://github.com/${response.GithubName}
                 mask: "*"
             }
         ])
-        // .then(response => {
-        //     console.log('Answer: ', response)
-
-        //     console.log("The website is: ", response.color)
-        // })
 }
-
 
     function init() {
         readmeQuestions()
-        .then((response) => fs.writeFile('Readme.md', createReadme(response), (err) =>
+        .then((response) => fs.writeFile('index.html', createReadme(response), (err) =>
+        // .then((response) => fs.writeFile('Readme.md', createReadme(response), (err) =>
         err ? console.error(err) : console.log('Readme file was succesfully created')));
     }
 
