@@ -6,7 +6,7 @@ const Manager = require('./assets/Manager')
 const Intern = require('./assets/Intern')
 const Engineer = require('./assets/Engineer')
 
-const teamName = ["Mario", "Andres", "Acosta"];
+const teamName = ["Team", "members"];
 const createReadme = (response) =>
 `
 <!DOCTYPE html>
@@ -159,11 +159,7 @@ ${response.TeamMember}
                     teamName.push(engineerAnswer.Engineer);
                     switch(engineerAnswer.TeamMember){
                     case 'Engineer':
-                        // console.log('Engineer Name: ' + engineerAnswer.Engineer)                        
-                        // console.log("We are pushing the Engineer's response:")
-                        // teamName.push(engineerAnswer.Engineer);
                         console.log(teamName)
-
                         engineer();
                         break;
                     case 'Intern':
@@ -244,6 +240,11 @@ ${response.TeamMember}
     async function init() {
         console.log('Calling the Manager');
         const managerWait = await managerQuestions()
+
+        console.log('We need the functions back!')
+        console.log('Our current awway is: ', teamName)
+
+
 
         //Todo: If we do not comment the following, we will have problems running the code. It simultaneously asks for the same questions.
         // const teamWait = await intern()
