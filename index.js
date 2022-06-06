@@ -119,7 +119,7 @@ ${response.TeamMember}
                 break;
             case 'Intern':
                 // console.log('Intern')
-                // intern();
+                intern();
                 break;
             case 'None':
                 console.log('Finish')
@@ -142,6 +142,13 @@ ${response.TeamMember}
                     type: 'input',
                     name: 'EngineerResponsability', 
                     message: 'What is the Engineer responsability? '
+                }
+                ,
+                {
+                    type: 'rawlist', 
+                    name: 'TeamMember',
+                    message: 'Which profession would you like to add? ',
+                    choices: ['Engineer','Intern','None']
                 }
             ])
             .then((internAnswer) => {
