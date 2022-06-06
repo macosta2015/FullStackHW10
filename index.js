@@ -6,7 +6,7 @@ const Manager = require('./assets/Manager')
 const Intern = require('./assets/Intern')
 const Engineer = require('./assets/Engineer')
 
-// const teamName = ["Mario", "Andres", "Acosta"];
+const teamName = ["Mario", "Andres", "Acosta"];
 const createReadme = (response) =>
 `
 <!DOCTYPE html>
@@ -41,7 +41,7 @@ ${response.Responsability}
 
 <div class="center">
 <p>This text is centered.</p>
-${response.InternCheck}
+${response.Intern}
 </div>
 
 <div class="center">
@@ -115,9 +115,12 @@ ${response.TeamMember}
             switch(userAnswer.TeamMember){
             case 'Engineer':
                 console.log('Add an Engineer')
+                console.log(teamName)
+
                 engineer();
                 break;
             case 'Intern':
+                console.log('Add an Intern')
                 intern();
                 break;
             case 'None':
@@ -147,22 +150,33 @@ ${response.TeamMember}
                     type: 'rawlist', 
                     name: 'TeamMember',
                     message: 'Which profession would you like to add? ',
-                    choices: ['Engineer','Intern','None']
+                    choices: ['Engineer','Intern','None'],
                 }
             ])
                 .then((engineerAnswer) => {
+                    console.log('Engineer Name: ' + engineerAnswer.Engineer)                        
+                    console.log("We are pushing the Engineer's response:")
+                    teamName.push(engineerAnswer.Engineer);
                     switch(engineerAnswer.TeamMember){
                     case 'Engineer':
-                        console.log('Add an Engineer')
+                        // console.log('Engineer Name: ' + engineerAnswer.Engineer)                        
+                        // console.log("We are pushing the Engineer's response:")
+                        // teamName.push(engineerAnswer.Engineer);
+                        console.log(teamName)
+
                         engineer();
                         break;
                     case 'Intern':
-                        console.log('Intern')
+                        console.log('Add an Intern')
                         intern();
+
+                        console.log(teamName)
                         break;
                     case 'None':
                         console.log('Finish')
                         // finishedTeam();
+
+                        console.log(teamName)
                         break;
                     }
                 })
@@ -175,12 +189,11 @@ ${response.TeamMember}
 
 
     async function intern(){
-        // console.log('Intern function is running!')
         return inquirer
         .prompt([
             {
                 type: 'input',
-                name: 'InternCheck', 
+                name: 'Intern', 
                 message: 'What is the interns name? '
             }
             ,
@@ -198,23 +211,28 @@ ${response.TeamMember}
             }
             ])
             .then((internAnswer) => {
+                console.log('Engineer Name: ' + internAnswer.Intern)                        
+                    console.log("We are pushing the Intern's response:")
+                    teamName.push(internAnswer.Intern);
+
                 switch(internAnswer.TeamMember){
                 case 'Engineer':
                     console.log('Add an Engineer')
+                    console.log(teamName)
                     engineer();
                     break;
                 case 'Intern':
-                    console.log('Intern')
+                    console.log('Add an Intern')
+                    console.log(teamName)
                     intern();
                     break;
                 case 'None':
                     console.log('Finish')
+                    console.log(teamName)
                     // finishedTeam();
                     break;
                 }
-                // console.log(internAnswer.InternCheck)                
-                // console.log(internAnswer.InternResponsability)
-                // console.log(internAnswer.TeamMember)
+
             }).catch((err)=>{
                 if(err){
                 console.log('Error, not working!');
