@@ -85,9 +85,10 @@ ${response.TeamMember}
 // #### ${response.secretText}
 // `
 ;
-    function managerQuestions() {
-    return inquirer
-    .prompt([
+    function managerQuestions() 
+    {
+        return inquirer
+        .prompt([
             {
                 name: 'Manager', 
                 message: 'What is the managers name? '
@@ -101,10 +102,28 @@ ${response.TeamMember}
             {
                 type: 'rawlist', 
                 name: 'TeamMember',
-                message: 'Which licenses are used in the project? ',
+                message: 'Which profession would you like to add? ',
                 choices: ['Engineer','Intern','None']
             }
         ])
+        .then((userAnswer) => {
+            switch(userAnswer.TeamMember){
+            case 'Engineer':
+                console.log('Add an Engineer')
+                // engineer();
+                break;
+          
+            case 'Intern':
+                console.log('Intern')
+                // intern();
+                break;
+          
+            case 'None':
+                console.log('Finish')
+                // finishedTeam();
+                break;
+            }
+        })
     }
 
     function teamQuestions(){
@@ -120,7 +139,7 @@ ${response.TeamMember}
 
 
     async function init() {
-        console.log('Calling');
+        console.log('Calling the Manager');
         const managerWait = await managerQuestions()
         const teamWait = await teamQuestions()
 
