@@ -115,11 +115,11 @@ ${response.TeamMember}
             switch(userAnswer.TeamMember){
             case 'Engineer':
                 console.log('Add an Engineer')
-                // engineer();
+                engineer();
                 break;
             case 'Intern':
-                console.log('Intern')
-                intern();
+                // console.log('Intern')
+                // intern();
                 break;
             case 'None':
                 console.log('Finish')
@@ -129,7 +129,7 @@ ${response.TeamMember}
         })
     }
 
-    function engineer(){
+    async function engineer(){
         console.log('We are printing the Engineering part')
         return inquirer
         .prompt([
@@ -137,7 +137,21 @@ ${response.TeamMember}
                     name: 'Engineer', 
                     message: 'What is the engineer name? '
                 }
+                ,
+                {
+                    type: 'input',
+                    name: 'EngineerResponsability', 
+                    message: 'What is the Engineer responsability? '
+                }
             ])
+            .then((internAnswer) => {
+                console.log('Inside the .then withing engineers! ')
+    
+            }).catch((err)=>{
+                if(err){
+                console.log('Error, not working!');
+                }
+            })
     } 
 
 
@@ -157,19 +171,19 @@ ${response.TeamMember}
                 name: 'InternResponsability', 
                 message: 'What is the interns responsability? '
             }
-            // ,
-            // {
-            //     type: 'rawlist', 
-            //     name: 'TeamMember',
-            //     message: 'Which profession would you like to add? ',
-            //     choices: ['Engineer','Intern','None']
-            // }
+            ,
+            {
+                type: 'rawlist', 
+                name: 'TeamMember',
+                message: 'Which profession would you like to add? ',
+                choices: ['Engineer','Intern','None']
+            }
             ])
             .then((internAnswer) => {
                 console.log('Inside the .then! ')
                 console.log(internAnswer.InternCheck)                
                 console.log(internAnswer.InternResponsability)
-                console.log(internAnswer)
+                console.log(internAnswer.TeamMember)
 
         
                 // switch(internAnswer.TeamMember){
@@ -197,11 +211,16 @@ ${response.TeamMember}
     async function init() {
         console.log('Calling the Manager');
         const managerWait = await managerQuestions()
-        const teamWait = await intern()
 
-        .then((response) => fs.writeFile('index.html', createReadme(response), (err) =>
-        err ? console.error(err) : console.log('HTML file was succesfully created')));
-        console.log('After the call')
+        //Todo: If we do not comment the following, we will have problems running the code. It simultaneously asks for the same questions.
+        // const teamWait = await intern()
+
+        //Todo: This code is useful to create the HTML file, the problem with it is that it does not les us run inquirer properly
+        // .then((response) => fs.writeFile('index.html', createReadme(response), (err) =>
+        // err ? console.error(err) : console.log('HTML file was succesfully created')));
+        // console.log('After the call')
+
+
         // .then((response) => fs.writeFile('index.html', createReadme(response), (err) =>
         // err ? console.error(err) : console.log('HTML file was succesfully created')));
 
