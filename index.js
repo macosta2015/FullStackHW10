@@ -151,19 +151,31 @@ ${response.TeamMember}
                     choices: ['Engineer','Intern','None']
                 }
             ])
-            .then((internAnswer) => {
-                console.log('Inside the .then withing engineers! ')
-    
-            }).catch((err)=>{
-                if(err){
-                console.log('Error, not working!');
-                }
-            })
+                .then((engineerAnswer) => {
+                    switch(engineerAnswer.TeamMember){
+                    case 'Engineer':
+                        console.log('Add an Engineer')
+                        engineer();
+                        break;
+                    case 'Intern':
+                        console.log('Intern')
+                        intern();
+                        break;
+                    case 'None':
+                        console.log('Finish')
+                        // finishedTeam();
+                        break;
+                    }
+                })
+                .catch((err)=>{
+                    if(err){
+                        console.log('Error, not working!');
+                    }
+                })
     } 
 
 
-    async function intern()
-    {
+    async function intern(){
         // console.log('Intern function is running!')
         return inquirer
         .prompt([
@@ -212,7 +224,7 @@ ${response.TeamMember}
                 console.log('Error, not working!');
                 }
             })
-        }
+    }
 
 
     async function init() {
