@@ -41,7 +41,7 @@ ${response.Responsability}
 
 <div class="center">
 <p>This text is centered.</p>
-${response.Interns}
+${response.InternCheck}
 </div>
 
 <div class="center">
@@ -90,7 +90,7 @@ ${response.TeamMember}
 // #### ${response.secretText}
 // `
 ;
-    function managerQuestions() 
+    async function managerQuestions() 
     {
         return inquirer
         .prompt([
@@ -140,26 +140,53 @@ ${response.TeamMember}
             ])
     } 
 
-    function intern(){
-        console.log('We are printing the Intern part')
-    }
 
-    function teamQuestions(){
-        console.log('Is this running?')
+    async function intern()
+    {
+        // console.log('Intern function is running!')
         return inquirer
         .prompt([
-                {
-                    name: 'Manager', 
-                    message: 'What is the managers name? '
-                }
+            {
+                type: 'input',
+                name: 'InternCheck', 
+                message: 'What is the interns name? '
+            }
+            // ,
+            // {
+            //     type: 'rawlist', 
+            //     name: 'TeamMember',
+            //     message: 'Which profession would you like to add? ',
+            //     choices: ['Engineer','Intern','None']
+            // }
             ])
-    }
+            .then((internAnswer) => {
+                console.log('Inside the .then! ')
+                // switch(internAnswer.TeamMember){
+                // case 'Engineer':
+                //     console.log('Add an Engineer')
+                //     // engineer();
+                //     break;
+                // case 'Intern':
+                //     console.log('Intern')
+                //     // intern();
+                //     break;
+                // case 'None':
+                //     console.log('Finish')
+                //     // finishedTeam();
+                //     break;
+                // }
+            }).catch((err)=>{
+                if(err){
+                console.log('Error, not working!');
+                }
+            })
+        }
 
 
     async function init() {
         console.log('Calling the Manager');
         const managerWait = await managerQuestions()
-        const teamWait = await teamQuestions()
+        const teamWait = await intern()
 
         .then((response) => fs.writeFile('index.html', createReadme(response), (err) =>
         err ? console.error(err) : console.log('HTML file was succesfully created')));
