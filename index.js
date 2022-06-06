@@ -167,7 +167,11 @@ ${response.TeamMember}
             ])
             .then((internAnswer) => {
                 console.log('Inside the .then! ')
+                console.log(internAnswer.InternCheck)                
+                console.log(internAnswer.InternResponsability)
                 console.log(internAnswer)
+
+        
                 // switch(internAnswer.TeamMember){
                 // case 'Engineer':
                 //     console.log('Add an Engineer')
