@@ -6,7 +6,7 @@ const Manager = require('./assets/Manager')
 const Intern = require('./assets/Intern')
 const Engineer = require('./assets/Engineer')
 
-
+// const teamName = ["Mario", "Andres", "Acosta"];
 const createReadme = (response) =>
 `
 <!DOCTYPE html>
