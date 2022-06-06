@@ -118,7 +118,6 @@ ${response.TeamMember}
                 engineer();
                 break;
             case 'Intern':
-                // console.log('Intern')
                 intern();
                 break;
             case 'None':
