@@ -170,8 +170,7 @@ ${response.TeamMember}
                         break;
                     case 'None':
                         console.log('Finish')
-                        // finishedTeam();
-
+                        finishedTeam();
                         console.log(teamName)
                         break;
                     }
@@ -225,7 +224,7 @@ ${response.TeamMember}
                 case 'None':
                     console.log('Finish')
                     console.log(teamName)
-                    // finishedTeam();
+                    finishedTeam();
                     break;
                 }
 
@@ -236,14 +235,24 @@ ${response.TeamMember}
             })
     }
 
+    function finishedTeam(){
+        console.log("Hello, finished Team!: " + teamName)
+
+        var myJsonString = JSON.stringify(teamName);
+        console.log("We are printing the JSON formtat: ")
+        console.log(myJsonString)
+
+
+
+    } 
+
 
     async function init() {
         console.log('Calling the Manager');
         const managerWait = await managerQuestions()
 
-        console.log('We need the functions back!')
-        console.log('Our current awway is: ', teamName)
-
+        // console.log('We need the functions back!')
+        // console.log('Our current awway is: ', teamName)
 
 
         //Todo: If we do not comment the following, we will have problems running the code. It simultaneously asks for the same questions.
@@ -335,3 +344,9 @@ ${response.TeamMember}
 
 
 
+
+
+            // Documentations
+
+            // Array to JSON format
+            // https://stackoverflow.com/questions/2295496/convert-array-to-json
