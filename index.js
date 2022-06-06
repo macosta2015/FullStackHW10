@@ -115,7 +115,7 @@ ${response.TeamMember}
             switch(userAnswer.TeamMember){
             case 'Engineer':
                 console.log('Add an Engineer')
-                engineer();
+                // engineer();
                 break;
             case 'Intern':
                 console.log('Intern')
@@ -151,6 +151,12 @@ ${response.TeamMember}
                 name: 'InternCheck', 
                 message: 'What is the interns name? '
             }
+            ,
+            {
+                type: 'input',
+                name: 'InternResponsability', 
+                message: 'What is the interns responsability? '
+            }
             // ,
             // {
             //     type: 'rawlist', 
@@ -161,6 +167,7 @@ ${response.TeamMember}
             ])
             .then((internAnswer) => {
                 console.log('Inside the .then! ')
+                console.log(internAnswer)
                 // switch(internAnswer.TeamMember){
                 // case 'Engineer':
                 //     console.log('Add an Engineer')
