@@ -36,12 +36,17 @@ ${response.Manager}
 
 <div class="center">
 <p>This text is centered.</p>
-${response.Engineer}
+${response.Responsability}
 </div>
 
 <div class="center">
 <p>This text is centered.</p>
 ${response.Interns}
+</div>
+
+<div class="center">
+<p>The next Team member is:</p>
+${response.Engineer}
 </div>
 
 <div class="center">
@@ -95,8 +100,8 @@ ${response.TeamMember}
             }
             ,
             {
-                name: 'Engineer', 
-                message: 'What is the Engineers name? '
+                name: 'Responsability', 
+                message: 'What is the responsability? '
             }
             ,
             {
@@ -110,20 +115,33 @@ ${response.TeamMember}
             switch(userAnswer.TeamMember){
             case 'Engineer':
                 console.log('Add an Engineer')
-                // engineer();
+                engineer();
                 break;
-          
             case 'Intern':
                 console.log('Intern')
-                // intern();
+                intern();
                 break;
-          
             case 'None':
                 console.log('Finish')
                 // finishedTeam();
                 break;
             }
         })
+    }
+
+    function engineer(){
+        console.log('We are printing the Engineering part')
+        return inquirer
+        .prompt([
+                {
+                    name: 'Engineer', 
+                    message: 'What is the engineer name? '
+                }
+            ])
+    } 
+
+    function intern(){
+        console.log('We are printing the Intern part')
     }
 
     function teamQuestions(){
