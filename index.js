@@ -1,12 +1,31 @@
 //HomeWork 10
 
+
+//node modueles 
 const fs = require('fs');
 const inquirer = require('inquirer');
-const Manager = require('./assets/Manager')
-const Intern = require('./assets/Intern')
-const Engineer = require('./assets/Engineer')
 
-const teamName = ["Team", "members"];
+//HTML Template
+const generateTeam = require("./src/page-template.js");
+
+//Library modules
+const Manager = require('./Assets/Manager')
+const Intern = require('./Assets/Intern')
+const Engineer = require('./Assets/Engineer')
+
+// const teamName = ["Team", "members"];
+const teamName = [];
+
+
+    function createTeam () {
+        console.log("new guy", newStaffMemberData)
+        fs.writeFileSync(
+        "./output/index.html",
+        generateTeam(newStaffMemberData),
+        "utf-8"
+        );
+    }
+
 
     async function managerQuestions() 
     {
@@ -33,17 +52,17 @@ const teamName = ["Team", "members"];
             switch(userAnswer.TeamMember){
             case 'Engineer':
                 console.log('Add an Engineer')
-                console.log(teamName)
-
                 engineer();
                 break;
+
             case 'Intern':
                 console.log('Add an Intern')
                 intern();
                 break;
+                
             case 'None':
                 console.log('Finish')
-                // finishedTeam();
+                finishedTeam();
                 break;
             }
         })
@@ -77,15 +96,14 @@ const teamName = ["Team", "members"];
                     teamName.push(engineerAnswer.Engineer);
                     switch(engineerAnswer.TeamMember){
                     case 'Engineer':
-                        console.log(teamName)
                         engineer();
                         break;
+
                     case 'Intern':
                         console.log('Add an Intern')
                         intern();
-
-                        console.log(teamName)
                         break;
+
                     case 'None':
                         console.log('Finish')
                         finishedTeam();
@@ -95,7 +113,7 @@ const teamName = ["Team", "members"];
                 })
                 .catch((err)=>{
                     if(err){
-                        console.log('Error, not working!');
+                        console.log('Done running');
                     }
                 })
     } 
@@ -131,12 +149,10 @@ const teamName = ["Team", "members"];
                 switch(internAnswer.TeamMember){
                 case 'Engineer':
                     console.log('Add an Engineer')
-                    console.log(teamName)
                     engineer();
                     break;
                 case 'Intern':
                     console.log('Add an Intern')
-                    console.log(teamName)
                     intern();
                     break;
                 case 'None':
@@ -148,7 +164,7 @@ const teamName = ["Team", "members"];
 
             }).catch((err)=>{
                 if(err){
-                console.log('Error, not working!');
+                console.log('Done running!');
                 }
             })
     }
@@ -162,13 +178,19 @@ const teamName = ["Team", "members"];
 
         //Todo: This code is useful to create the HTML file, the problem with it is that it does not les us run inquirer properly
         
-        console.log('Before the Readme generator')
-        .then((response) => fs.writeFile('index.html', createReadme(response), (err) =>
-        err ? console.error(err) : console.log('HTML file was succesfully created')));
-        console.log('After the call')
-                
-        console.log('After the Readme generatpr')
+        console.log('Before the HTM; generator')
+        // .then((response) => fs.writeFile('index.html', createReadme(response), (err) =>
+        // err ? console.error(err) : console.log('HTML file was succesfully created')));
 
+        // TODO: Ths needs to work
+        fs.writeFileSync(
+            "./output/index.html",
+            generateTeam(newStaffMemberData),
+            "utf-8"
+          );
+        console.log('After the HTM; generator')
+
+                
     } 
 
         const createReadme = (response) =>
