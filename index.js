@@ -7,89 +7,7 @@ const Intern = require('./assets/Intern')
 const Engineer = require('./assets/Engineer')
 
 const teamName = ["Team", "members"];
-const createReadme = (response) =>
-`
-<!DOCTYPE html>
-<html>
-<head>
-<style>
-.center {
-    text-align: center;
-    border: 3px solid green;
-    background-color: lightgrey;
-    width: 300px;
-    padding: 50px;
-    margin: auto;
-    /* <p>To horizontally center a block element (like div), use margin: auto;</p> */
 
-}
-</style>
-</head>
-<body>
-
-<h2>Center Text</h2>
-
-<div class="center">
-<p>This Manager's name is.</p>
-${response.Manager}
-</div>
-
-<div class="center">
-<p>This text is centered.</p>
-${response.Responsability}
-</div>
-
-<div class="center">
-<p>This text is centered.</p>
-${response.Intern}
-</div>
-
-<div class="center">
-<p>The next Team member is:</p>
-${response.Engineer}
-</div>
-
-<div class="center">
-<p>The next Team member is:</p>
-${response.TeamMember}
-</div>
-
-
-</body>
-</html>
-
-`
-
-// `
-// # The Interns is:
-// #### ${response.Interns}
-
-// # The usage information name is:
-// #### ${response.UsageInformation}
-
-// # The Constribution Guidelines is:
-// #### ${response.ConstributionGuidelines}
-
-// # The Test Instructions Guidelines is:
-// #### ${response.TestInstructions}
-
-// # The License used is:
-// #### ${response.License}
-
-// # The Github Account is:
-// #### ${response.GithubName}
-// https://github.com/${response.GithubName}
-
-// # Please reach out to the following email:
-// #### ${response.Email}
-
-// # The password is:
-// #### ${response.TeamMember}
-
-// # The secret text is:
-// #### ${response.secretText}
-// `
-;
     async function managerQuestions() 
     {
         return inquirer
@@ -242,10 +160,69 @@ ${response.TeamMember}
         console.log("We are printing the JSON formtat: ")
         console.log(myJsonString)
 
-
+        //Todo: This code is useful to create the HTML file, the problem with it is that it does not les us run inquirer properly
+        
+        console.log('Before the Readme generator')
+        .then((response) => fs.writeFile('index.html', createReadme(response), (err) =>
+        err ? console.error(err) : console.log('HTML file was succesfully created')));
+        console.log('After the call')
+                
+        console.log('After the Readme generatpr')
 
     } 
 
+        const createReadme = (response) =>
+    `
+    <!DOCTYPE html>
+    <html>
+    <head>
+    <style>
+    .center {
+        text-align: center;
+        border: 3px solid green;
+        background-color: lightgrey;
+        width: 300px;
+        padding: 50px;
+        margin: auto;
+        /* <p>To horizontally center a block element (like div), use margin: auto;</p> */
+
+    }
+    </style>
+    </head>
+    <body>
+
+    <h2>Center Text</h2>
+
+    <div class="center">
+    <p>This Manager's name is: </p>
+    ${userAnswer.Manager}
+    </div>
+
+    <div class="center">
+    <p>The manager's text is: </p>
+    ${userAnswer.Responsability}
+    </div>
+
+    <div class="center">
+    <p>This interns text is: </p>
+    ${internAnswer.Intern}
+    </div>
+
+    <div class="center">
+    <p>The next Team member is:</p>
+    ${engineerAnswer.Engineer}
+    </div>
+
+    <div class="center">
+    <p>The next Team member is:</p>
+    </div>
+
+
+    </body>
+    </html>
+
+    `
+    ;
 
     async function init() {
         console.log('Calling the Manager');
