@@ -170,17 +170,17 @@ const teamName = [];
     }
 
     function finishedTeam(){
-        console.log("Hello, finished Team!: " + teamName)
 
+        console.log("Hello, finished Team!: " + teamName)
         var myJsonString = JSON.stringify(teamName);
-        console.log("We are printing the JSON formtat: ")
+
+        console.log("We are printing the NOT JSON formtat: ") //NOT JSON Format
+        console.log(teamName)
+        console.log("We are printing the JSON formtat: ") //JSON Format
         console.log(myJsonString)
 
-        //Todo: This code is useful to create the HTML file, the problem with it is that it does not les us run inquirer properly
         
         console.log('Before the HTM; generator')
-        // .then((response) => fs.writeFile('index.html', createReadme(response), (err) =>
-        // err ? console.error(err) : console.log('HTML file was succesfully created')));
 
         // TODO: Ths needs to work
         fs.writeFileSync(
@@ -190,6 +190,8 @@ const teamName = [];
           );
         console.log('After the HTM; generator')
 
+        // .then((response) => fs.writeFile('index.html', createReadme(response), (err) =>
+        // err ? console.error(err) : console.log('HTML file was succesfully created')));
                 
     } 
 
@@ -270,79 +272,6 @@ const teamName = [];
 
     init()
     
-
-
-
-
-        // ]).then((userChoice)=>{
-        //     switch(userChoice.ListOptions){
-        //         case 'Add an Engineer':
-        //             console.log('Engineering')
-        //         // Engineer();
-        //         break;
-                
-        //         case 'Add an Intern':
-        //             console.log('Intern')
-        //         // Intern();
-        //         break;
-
-        //         case 'None':
-        //             console.log('None')
-        //         // finishedTeam();
-        //         break;
-        //     }
-        //     }).catch(err=>{
-        //     if(err){
-        //         console.log(`Something went wrong when choosing to add team members`);
-        //     }
-        // })
-    // } 
-    
-            // ,
-            // {
-            //     name: 'Interns', 
-            //     message: 'How is the interns name? '
-            // }
-            // ,
-            // {
-            //     name: 'UsageInformation', 
-            //     message: 'What is usage information of the project? '
-            // }
-            // ,
-            // {
-            //     name: 'ConstributionGuidelines', 
-            //     message: 'What are the contributions of of the project? '
-            // }
-            // ,
-            // {
-            //     name: 'TestInstructions', 
-            //     message: 'What are the test instructions of the project? '
-            // }
-            // ,
-            // {
-            //     type: 'rawlist', 
-            //     name: 'TeamMember',
-            //     message: 'Which licenses are used in the project? ',
-            //     choices: ['Engineer','Intern','Manager']
-            // }
-            // ,
-            // {
-            //     name: 'GithubName', 
-            //     message: 'What is the Githubname '
-            // },
-            // {
-            //     name: 'Email', 
-            //     message: 'What is your email so that they can reach out? '
-            // },
-            // {
-            //     type: 'password', 
-            //     name: 'secretText',
-            //     message: 'Is there a secret password in the project: ',
-            //     mask: "*"
-            // }
-
-
-
 
 
             // Documentations
