@@ -102,7 +102,7 @@ const internArray = [];
                     console.log('Engineer Name: ' + engineerAnswer.Engineer)                        
                     console.log("We are pushing the Engineer's response:")
                     teamName.push(engineerAnswer.Engineer);
-                    // engineerArray.push(engineerAnswer)
+                    engineerArray.push(engineerAnswer)
 
                     const newEngineer = new Engineer(
                         engineerAnswer.Engineer,
@@ -110,9 +110,9 @@ const internArray = [];
                         console.log("engineerAnswer.Engineer: " + engineerAnswer.Engineer),
                         console.log("engineerAnswer.EngineerResponsability: " + engineerAnswer.EngineerResponsability)
                         );
-                        
-                      engineerArray.push(newEngineer);
-                      console.log('engineerArray: '+ engineerArray)
+
+                    //   engineerArray.push(newEngineer);
+                    //   console.log('engineerObject: '+ engineerArray)
                     
                     
 
@@ -202,7 +202,7 @@ const internArray = [];
         // console.log(myJsonStringTeam)
 
         var myJsonStringEngineer = JSON.stringify(engineerArray);
-        console.log('Printing engineerArray: ')
+        console.log('Printing engineerObject: ')
         console.log(engineerArray)
         console.log(myJsonStringEngineer)
         console.log('DONE Printing engineerArray: ')
@@ -219,7 +219,6 @@ const internArray = [];
             let name = i.name;
             let id = i.id;
             let email = i.email;
-
             console.log('We are inside the engineerArray for loop')
         }
 
