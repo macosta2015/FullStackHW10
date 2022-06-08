@@ -13,6 +13,13 @@ const Manager = require('./Assets/Manager')
 const Intern = require('./Assets/Intern')
 const Engineer = require('./Assets/Engineer')
 
+//Importing the HTML temaples
+const HTML = require('./templates/htmlTemplate')
+const managerHTML = require('./templates/managerHTML')
+const engineerHTML = require('./templates/engineerHTML')
+const internHTML = require('./templates/internHTML');
+
+
 // const teamName = ["Team", "members"];
 const teamName = [];
 const engineerArray = [];
@@ -96,7 +103,9 @@ const internArray = [];
                     console.log("We are pushing the Engineer's response:")
                     teamName.push(engineerAnswer.Engineer);
                     engineerArray.push(engineerAnswer)
+
                     
+
                     switch(engineerAnswer.TeamMember){
                     case 'Engineer':
                         engineer();
