@@ -16,7 +16,7 @@ const Engineer = require('./Assets/Engineer')
 // const teamName = ["Team", "members"];
 const teamName = [];
 const engineerArray = [];
-const interArray = [];
+const internArray = [];
 
 
     function createTeam () {
@@ -71,7 +71,6 @@ const interArray = [];
     }
 
     async function engineer(){
-        console.log('We are printing the Engineering part')
         return inquirer
         .prompt([
                 {
@@ -96,17 +95,8 @@ const interArray = [];
                     console.log('Engineer Name: ' + engineerAnswer.Engineer)                        
                     console.log("We are pushing the Engineer's response:")
                     teamName.push(engineerAnswer.Engineer);
-
-
-                    //TODO: Testing the engineerArray
-                    //This include's Angel's code
                     engineerArray.push(engineerAnswer)
-                     //Deconstructuring user answers
-                    // const {Engineer, EngineerResponsability, TeamMember} = userAnswer;
-                    //Creating my object using my imported Manager class
-                    // const engineer = new Manager(Engineer, EngineerResponsability, TeamMember)
-
-
+                    
                     switch(engineerAnswer.TeamMember){
                     case 'Engineer':
                         engineer();
@@ -153,12 +143,12 @@ const interArray = [];
                 message: 'Which profession would you like to add? ',
                 choices: ['Engineer','Intern','None']
             }
-            ])
-            .then((internAnswer) => {
+            ]).then((internAnswer) => {
                 console.log('Engineer Name: ' + internAnswer.Intern)                        
                     console.log("We are pushing the Intern's response:")
                     teamName.push(internAnswer.Intern);
-
+                    //TODO: Testing the internArray
+                    internArray.push(internAnswer)
                 switch(internAnswer.TeamMember){
                 case 'Engineer':
                     console.log('Add an Engineer')
@@ -187,23 +177,39 @@ const interArray = [];
         console.log("Hello, finished Team!: " + teamName)
         var myJsonStringTeam = JSON.stringify(teamName);
 
-        console.log("We are printing the NOT JSON format: ") //NOT JSON Format
-        console.log(teamName)
-        console.log("We are printing the JSON format: ") //JSON Format
-        console.log(myJsonStringTeam)
+        // console.log("We are printing the NOT JSON format: ") //NOT JSON Format
+        // console.log(teamName)
+        // console.log("We are printing the JSON format: ") //JSON Format
+        // console.log(myJsonStringTeam)
 
         var myJsonStringEngineer = JSON.stringify(engineerArray);
         console.log('Printing engineerArray: ')
         console.log(engineerArray)
         console.log(myJsonStringEngineer)
         console.log('DONE Printing engineerArray: ')
+
+        console.log('HEYYYYYYYYYYYYYYYYYYYYYYYYYYYY')
+
+        var myJsonStringIntern = JSON.stringify(internArray);
+        console.log('Printing internArray: ')
+        console.log(internArray)
+        console.log(myJsonStringIntern)
+        console.log('DONE Printing internArray: ')
         
         for (let i of engineerArray){
             let name = i.name;
             let id = i.id;
             let email = i.email;
 
-            console.log('We are inside the for loop')
+            console.log('We are inside the engineerArray for loop')
+        }
+
+        for (let i of internArray){
+            let name = i.name;
+            let id = i.id;
+            let email = i.email;
+
+            console.log('We are inside the internArray for loop')
         }
 
 
