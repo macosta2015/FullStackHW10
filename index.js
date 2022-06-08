@@ -102,8 +102,18 @@ const internArray = [];
                     console.log('Engineer Name: ' + engineerAnswer.Engineer)                        
                     console.log("We are pushing the Engineer's response:")
                     teamName.push(engineerAnswer.Engineer);
-                    engineerArray.push(engineerAnswer)
+                    // engineerArray.push(engineerAnswer)
 
+                    const newEngineer = new Engineer(
+                        engineerAnswer.Engineer,
+                        engineerAnswer.EngineerResponsability,
+                        console.log("engineerAnswer.Engineer: " + engineerAnswer.Engineer),
+                        console.log("engineerAnswer.EngineerResponsability: " + engineerAnswer.EngineerResponsability)
+                        );
+                        
+                      engineerArray.push(newEngineer);
+                      console.log('engineerArray: '+ engineerArray)
+                    
                     
 
                     switch(engineerAnswer.TeamMember){
