@@ -75,6 +75,7 @@ const interArray = [];
         return inquirer
         .prompt([
                 {
+                    type: 'input',
                     name: 'Engineer', 
                     message: 'What is the engineer name? '
                 }
@@ -91,11 +92,21 @@ const interArray = [];
                     message: 'Which profession would you like to add? ',
                     choices: ['Engineer','Intern','None'],
                 }
-            ])
-                .then((engineerAnswer) => {
+            ]).then((engineerAnswer) => {
                     console.log('Engineer Name: ' + engineerAnswer.Engineer)                        
                     console.log("We are pushing the Engineer's response:")
                     teamName.push(engineerAnswer.Engineer);
+
+
+                    //TODO: Testing the engineerArray
+                    //This include's Angel's code
+                    engineerArray.push(engineerAnswer)
+                     //Deconstructuring user answers
+                    // const {Engineer, EngineerResponsability, TeamMember} = userAnswer;
+                    //Creating my object using my imported Manager class
+                    // const engineer = new Manager(Engineer, EngineerResponsability, TeamMember)
+
+
                     switch(engineerAnswer.TeamMember){
                     case 'Engineer':
                         engineer();
@@ -112,8 +123,8 @@ const interArray = [];
                         console.log(teamName)
                         break;
                     }
-                })
-                .catch((err)=>{
+
+                }).catch((err)=>{
                     if(err){
                         console.log('Done running');
                     }
@@ -174,14 +185,28 @@ const interArray = [];
     function finishedTeam(){
 
         console.log("Hello, finished Team!: " + teamName)
-        var myJsonString = JSON.stringify(teamName);
+        var myJsonStringTeam = JSON.stringify(teamName);
 
-        console.log("We are printing the NOT JSON formtat: ") //NOT JSON Format
+        console.log("We are printing the NOT JSON format: ") //NOT JSON Format
         console.log(teamName)
-        console.log("We are printing the JSON formtat: ") //JSON Format
-        console.log(myJsonString)
+        console.log("We are printing the JSON format: ") //JSON Format
+        console.log(myJsonStringTeam)
 
+        var myJsonStringEngineer = JSON.stringify(engineerArray);
+        console.log('Printing engineerArray: ')
+        console.log(engineerArray)
+        console.log(myJsonStringEngineer)
+        console.log('DONE Printing engineerArray: ')
         
+        for (let i of engineerArray){
+            let name = i.name;
+            let id = i.id;
+            let email = i.email;
+
+            console.log('We are inside the for loop')
+        }
+
+
         console.log('Before the HTM; generator')
 
         // TODO: Ths needs to work
