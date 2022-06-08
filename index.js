@@ -15,6 +15,8 @@ const Engineer = require('./Assets/Engineer')
 
 // const teamName = ["Team", "members"];
 const teamName = [];
+const engineerArray = [];
+const interArray = [];
 
 
     function createTeam () {
