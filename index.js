@@ -196,38 +196,36 @@ const internArray = [];
         console.log("Hello, finished Team!: " + teamName)
         var myJsonStringTeam = JSON.stringify(teamName);
 
-        // console.log("We are printing the NOT JSON format: ") //NOT JSON Format
-        // console.log(teamName)
-        // console.log("We are printing the JSON format: ") //JSON Format
-        // console.log(myJsonStringTeam)
 
         var myJsonStringEngineer = JSON.stringify(engineerArray);
         console.log('Printing engineerObject: ')
         console.log(engineerArray)
+        console.log('Printing to JSON string: ')
         console.log(myJsonStringEngineer)
-        console.log('DONE Printing engineerArray: ')
 
-        console.log('HEYYYYYYYYYYYYYYYYYYYYYYYYYYYY')
-
-        var myJsonStringIntern = JSON.stringify(internArray);
-        console.log('Printing internArray: ')
-        console.log(internArray)
-        console.log(myJsonStringIntern)
-        console.log('DONE Printing internArray: ')
-        
+        countEngineer = 0;
         for (let i of engineerArray){
-            let name = i.name;
-            let id = i.id;
-            let email = i.email;
-            console.log('We are inside the engineerArray for loop')
+            let name = i.Engineer;
+            let responsability = i.EngineerResponsability;
+            console.log('Engineer'+countEngineer+': ' + name)
+            console.log('EngineerResponsability'+countEngineer+': ' + responsability)
+            countEngineer++
+                    
         }
 
+        var myJsonStringIntern = JSON.stringify(internArray);
+        console.log('Printing internObject: ')
+        console.log(internArray)
+        console.log('Printing to JSON string: ')
+        console.log(myJsonStringIntern)
+        
+        countIntern = 0;
         for (let i of internArray){
-            let name = i.name;
-            let id = i.id;
-            let email = i.email;
-
-            console.log('We are inside the internArray for loop')
+            let name = i.Intern;
+            let responsability = i.InternResponsability;
+            console.log('Intern'+countIntern+': ' + name)
+            console.log('InternResponsability'+countIntern+': ' + responsability)
+            countIntern++
         }
 
 
@@ -238,7 +236,7 @@ const internArray = [];
             "./output/index.html",
             generateTeam(newStaffMemberData),
             "utf-8"
-          );
+        );
         console.log('After the HTM; generator')
 
         // .then((response) => fs.writeFile('index.html', createReadme(response), (err) =>
