@@ -1,7 +1,7 @@
     // const HTML = (myJsonStringEngineer)=>{
-        
-    const HTML = (deconstructArray)=>{
-
+    
+    // console.log('HTML deconstructArray: ' + deconstructArray)
+    const HTML = (engineerAnswer)=>{
 
     return `
     <!DOCTYPE html>
@@ -30,12 +30,12 @@
 
     <div class="center">
     <p>This text is centered.</p>
-    ${deconstructArray}
+    ${engineerAnswer}
     </div>
 
     <div class="center">
     <p>This text is centered.</p>
-    ${deconstructArray}
+    ${engineerAnswer}
     </div>
 
     <div class="center">
@@ -48,6 +48,7 @@
     </html>
     `
 };
+
 
 module.exports = HTML;
 

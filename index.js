@@ -189,7 +189,7 @@ const internArray = [];
         console.log("Hello, finished Team!: " + teamName)
         var myJsonStringTeam = JSON.stringify(teamName);
 
-        var myJsonStringEngineer = JSON.stringify(engineerArray);
+        // var myJsonStringEngineer = JSON.stringify(engineerArray);
         // console.log('Printing engineerObject: ')
         // console.log(engineerArray)
         // console.log('Printing to JSON string: ')
@@ -203,6 +203,8 @@ const internArray = [];
             console.log('EngineerResponsability'+countEngineer+': ' + responsability)
             countEngineer++
         }
+        var myJsonStringEngineer = JSON.stringify(engineerArray);
+
         
         // console.log('What are we printing? ')
         // console.log(myJsonStringEngineer)
@@ -223,21 +225,22 @@ const internArray = [];
             countIntern++
         }
 
-        // console.log('myJsonStringEngineer: ' + myJsonStringEngineer)
-        HTML_GENERATOR(myJsonStringEngineer) //Temporatly sending myJsonStringEngineer
+        HTML_GENERATOR(myJsonStringEngineer) 
     } 
-
     function HTML_GENERATOR(myJsonStringEngineer){
+
         console.log('We are in the HTML generator')
         console.log('myJsonStringEngineer: ' + myJsonStringEngineer)
+        console.log('myJsonStringEngineer.Engineer: ' + myJsonStringEngineer.Engineer)
+
 
         const deconstructArray = myJsonStringEngineer
         console.log('deconstructArray: ' + deconstructArray)
 
-        let generatedHTML = HTML(deconstructArray)
+        let generatedHTML = HTML((deconstructArray))
         fs.writeFile('sample.html', generatedHTML, (err)=>err? console.log(err): console.log('HTML generated successfully '))
 
-
+    
 
         console.log('After the HTM; generator')
 
