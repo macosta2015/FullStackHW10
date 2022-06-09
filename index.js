@@ -110,12 +110,6 @@ const internArray = [];
                         console.log("engineerAnswer.Engineer: " + engineerAnswer.Engineer),
                         console.log("engineerAnswer.EngineerResponsability: " + engineerAnswer.EngineerResponsability)
                         );
-
-                    //   engineerArray.push(newEngineer);
-                    //   console.log('engineerObject: '+ engineerArray)
-                    
-                    
-
                     switch(engineerAnswer.TeamMember){
                     case 'Engineer':
                         engineer();
@@ -208,15 +202,18 @@ const internArray = [];
             console.log('Engineer'+countEngineer+': ' + name)
             console.log('EngineerResponsability'+countEngineer+': ' + responsability)
             countEngineer++
-                    
         }
+        
+        // console.log('What are we printing? ')
+        // console.log(myJsonStringEngineer)
+        // console.log('What are we printing? ')
+        // console.log(myJsonStringEngineer.Engineer)
 
         var myJsonStringIntern = JSON.stringify(internArray);
         // console.log('Printing internObject: ')
         // console.log(internArray)
         // console.log('Printing to JSON string: ')
         // console.log(myJsonStringIntern)
-        
         countIntern = 0;
         for (let i of internArray){
             let name = i.Intern;
@@ -226,16 +223,25 @@ const internArray = [];
             countIntern++
         }
 
-        // .then((response) => fs.writeFile('index.html', createReadme(response), (err) =>
-        // err ? console.error(err) : console.log('HTML file was succesfully created')));
+        // console.log('myJsonStringEngineer: ' + myJsonStringEngineer)
+        HTML_GENERATOR(myJsonStringEngineer) //Temporatly sending myJsonStringEngineer
+    } 
 
-        //Add my HTML parts to the main Template and cleaning the commas
-        let GeneratedHTML = HTML(writeManagerHTML, writeEngineerHTML, writeInternHTML ).replace(/[,]/g, ' ');
-        
-        //Write HTML 
-        fs.writeFile('sample.html', GeneratedHTML, (err)=>err? console.log(err): console.log('HTML generated successfully '))
+    function HTML_GENERATOR(myJsonStringEngineer){
+        console.log('We are in the HTML generator')
+        console.log('myJsonStringEngineer: ' + myJsonStringEngineer)
 
-        const createReadme = (response) =>
+        const deconstructArray = myJsonStringEngineer
+        console.log('deconstructArray: ' + deconstructArray)
+
+        let generatedHTML = HTML(deconstructArray)
+        // let generatedHTML = HTML(myJsonStringEngineer)
+        fs.writeFile('sample.html', generatedHTML, (err)=>err? console.log(err): console.log('HTML generated successfully '))
+        // const createReadme = (response) =>
+        console.log('Between the HTML generator')
+
+        //Need to have a JSON expecting it
+        // const generatedHTML = (engineerAnswer) =>
         `
         <!DOCTYPE html>
         <html>
@@ -255,11 +261,11 @@ const internArray = [];
         </head>
         <body>
     
-        <h2>Center Text</h2>
+        <h2>ARE WE RUNNING</h2>
     
         <div class="center">
         <p>This Manager's name is: </p>
-        ${userAnswer.Manager}
+        ${engineerAnswer.Engineer}
         </div>
     
         <div class="center">
@@ -285,24 +291,14 @@ const internArray = [];
         </body>
         </html>
     
-        `
-        ;
+        `;
 
-
-        console.log('Before the HTM; generator')
-
-        // TODO: Ths needs to work
-        fs.writeFileSync(
-            "./output/index.html",
-            generateTeam(newStaffMemberData),
-            "utf-8"
-        );
         console.log('After the HTM; generator')
 
-        // .then((response) => fs.writeFile('index.html', createReadme(response), (err) =>
-        // err ? console.error(err) : console.log('HTML file was succesfully created')));
-                
-    } 
+    }
+
+    
+
 
 
 
