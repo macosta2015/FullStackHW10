@@ -235,63 +235,9 @@ const internArray = [];
         console.log('deconstructArray: ' + deconstructArray)
 
         let generatedHTML = HTML(deconstructArray)
-        // let generatedHTML = HTML(myJsonStringEngineer)
         fs.writeFile('sample.html', generatedHTML, (err)=>err? console.log(err): console.log('HTML generated successfully '))
-        // const createReadme = (response) =>
-        console.log('Between the HTML generator')
 
-        //Need to have a JSON expecting it
-        // const generatedHTML = (engineerAnswer) =>
-        `
-        <!DOCTYPE html>
-        <html>
-        <head>
-        <style>
-        .center {
-            text-align: center;
-            border: 3px solid green;
-            background-color: lightgrey;
-            width: 300px;
-            padding: 50px;
-            margin: auto;
-            /* <p>To horizontally center a block element (like div), use margin: auto;</p> */
-    
-        }
-        </style>
-        </head>
-        <body>
-    
-        <h2>ARE WE RUNNING</h2>
-    
-        <div class="center">
-        <p>This Manager's name is: </p>
-        ${engineerAnswer.Engineer}
-        </div>
-    
-        <div class="center">
-        <p>The manager's text is: </p>
-        ${userAnswer.Responsability}
-        </div>
-    
-        <div class="center">
-        <p>This interns text is: </p>
-        ${internAnswer.Intern}
-        </div>
-    
-        <div class="center">
-        <p>The next Team member is:</p>
-        ${engineerAnswer.Engineer}
-        </div>
-    
-        <div class="center">
-        <p>The next Team member is:</p>
-        </div>
-    
-    
-        </body>
-        </html>
-    
-        `;
+
 
         console.log('After the HTM; generator')
 
@@ -305,23 +251,6 @@ const internArray = [];
     async function init() {
         console.log('Calling the Manager');
         const managerWait = await managerQuestions()
-
-        // console.log('We need the functions back!')
-        // console.log('Our current awway is: ', teamName)
-
-
-        //Todo: If we do not comment the following, we will have problems running the code. It simultaneously asks for the same questions.
-        // const teamWait = await intern()
-
-        //Todo: This code is useful to create the HTML file, the problem with it is that it does not les us run inquirer properly
-        // .then((response) => fs.writeFile('index.html', createReadme(response), (err) =>
-        // err ? console.error(err) : console.log('HTML file was succesfully created')));
-        // console.log('After the call')
-
-
-        // .then((response) => fs.writeFile('index.html', createReadme(response), (err) =>
-        // err ? console.error(err) : console.log('HTML file was succesfully created')));
-
     }
 
     init()
