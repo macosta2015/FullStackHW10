@@ -7,14 +7,13 @@
 console.log('WE ARE IN THE ENGINEER.JS FILEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE')
 
 class Engineer{
-
-   constructor (Engineer, EngineerResponsability , TeamMember) {
+    constructor (Engineer, EngineerResponsability , TeamMember) {
     //    super(Engineer,EngineerResponsability,TeamMember)
     //    this.github = github
-   }
-   getRole(){
-       return 'Engineer'
-   }
+}
+getRole(){
+    return 'Engineer'
+}
 //    getGithub(){
 //        return this.github
 //    }
