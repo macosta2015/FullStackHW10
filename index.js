@@ -196,10 +196,10 @@ const internArray = [];
         var myJsonStringTeam = JSON.stringify(teamName);
 
         var myJsonStringEngineer = JSON.stringify(engineerArray);
-        console.log('Printing engineerObject: ')
-        console.log(engineerArray)
-        console.log('Printing to JSON string: ')
-        console.log(myJsonStringEngineer)
+        // console.log('Printing engineerObject: ')
+        // console.log(engineerArray)
+        // console.log('Printing to JSON string: ')
+        // console.log(myJsonStringEngineer)
 
         countEngineer = 0;
         for (let i of engineerArray){
@@ -212,10 +212,10 @@ const internArray = [];
         }
 
         var myJsonStringIntern = JSON.stringify(internArray);
-        console.log('Printing internObject: ')
-        console.log(internArray)
-        console.log('Printing to JSON string: ')
-        console.log(myJsonStringIntern)
+        // console.log('Printing internObject: ')
+        // console.log(internArray)
+        // console.log('Printing to JSON string: ')
+        // console.log(myJsonStringIntern)
         
         countIntern = 0;
         for (let i of internArray){
@@ -225,6 +225,68 @@ const internArray = [];
             console.log('InternResponsability'+countIntern+': ' + responsability)
             countIntern++
         }
+
+        // .then((response) => fs.writeFile('index.html', createReadme(response), (err) =>
+        // err ? console.error(err) : console.log('HTML file was succesfully created')));
+
+        //Add my HTML parts to the main Template and cleaning the commas
+        let GeneratedHTML = HTML(writeManagerHTML, writeEngineerHTML, writeInternHTML ).replace(/[,]/g, ' ');
+        
+        //Write HTML 
+        fs.writeFile('sample.html', GeneratedHTML, (err)=>err? console.log(err): console.log('HTML generated successfully '))
+
+        const createReadme = (response) =>
+        `
+        <!DOCTYPE html>
+        <html>
+        <head>
+        <style>
+        .center {
+            text-align: center;
+            border: 3px solid green;
+            background-color: lightgrey;
+            width: 300px;
+            padding: 50px;
+            margin: auto;
+            /* <p>To horizontally center a block element (like div), use margin: auto;</p> */
+    
+        }
+        </style>
+        </head>
+        <body>
+    
+        <h2>Center Text</h2>
+    
+        <div class="center">
+        <p>This Manager's name is: </p>
+        ${userAnswer.Manager}
+        </div>
+    
+        <div class="center">
+        <p>The manager's text is: </p>
+        ${userAnswer.Responsability}
+        </div>
+    
+        <div class="center">
+        <p>This interns text is: </p>
+        ${internAnswer.Intern}
+        </div>
+    
+        <div class="center">
+        <p>The next Team member is:</p>
+        ${engineerAnswer.Engineer}
+        </div>
+    
+        <div class="center">
+        <p>The next Team member is:</p>
+        </div>
+    
+    
+        </body>
+        </html>
+    
+        `
+        ;
 
 
         console.log('Before the HTM; generator')
@@ -242,58 +304,7 @@ const internArray = [];
                 
     } 
 
-        const createReadme = (response) =>
-    `
-    <!DOCTYPE html>
-    <html>
-    <head>
-    <style>
-    .center {
-        text-align: center;
-        border: 3px solid green;
-        background-color: lightgrey;
-        width: 300px;
-        padding: 50px;
-        margin: auto;
-        /* <p>To horizontally center a block element (like div), use margin: auto;</p> */
 
-    }
-    </style>
-    </head>
-    <body>
-
-    <h2>Center Text</h2>
-
-    <div class="center">
-    <p>This Manager's name is: </p>
-    ${userAnswer.Manager}
-    </div>
-
-    <div class="center">
-    <p>The manager's text is: </p>
-    ${userAnswer.Responsability}
-    </div>
-
-    <div class="center">
-    <p>This interns text is: </p>
-    ${internAnswer.Intern}
-    </div>
-
-    <div class="center">
-    <p>The next Team member is:</p>
-    ${engineerAnswer.Engineer}
-    </div>
-
-    <div class="center">
-    <p>The next Team member is:</p>
-    </div>
-
-
-    </body>
-    </html>
-
-    `
-    ;
 
     async function init() {
         console.log('Calling the Manager');
