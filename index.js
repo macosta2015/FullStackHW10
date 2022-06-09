@@ -192,10 +192,8 @@ const internArray = [];
     }
 
     function finishedTeam(){
-
         console.log("Hello, finished Team!: " + teamName)
         var myJsonStringTeam = JSON.stringify(teamName);
-
 
         var myJsonStringEngineer = JSON.stringify(engineerArray);
         console.log('Printing engineerObject: ')
@@ -324,6 +322,9 @@ const internArray = [];
 
 
             // Documentations
+
+            // Why Is Array/Object Destructuring So Useful And How To Use It
+            // https://www.youtube.com/watch?v=NIq3qLaHCIs
 
             // Array to JSON format
             // https://stackoverflow.com/questions/2295496/convert-array-to-json
