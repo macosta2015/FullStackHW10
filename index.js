@@ -191,8 +191,14 @@ const internArray = [];
         const myJSON = JSON.stringify(engineerArray);
         console.log('engineerArray: ' + engineerArray)
         console.log('myJSON: ' + myJSON)
-        console.log('Print my name: ' + myJSON.Engineer)
 
+        for (let i=0; i<engineerArray.length; i++){
+            console.log('We are in the for loop, count: ' + i)
+            console.log(engineerArray[i])
+        }
+
+        engineerArray
+        
         let generatedHTML = HTML((engineerArray))
         fs.writeFile('sample.html', generatedHTML, (err)=>err? console.log(err): console.log('HTML generated successfully '))
         console.log('After the HTML generator')
