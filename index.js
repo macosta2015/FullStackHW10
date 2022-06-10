@@ -16,7 +16,7 @@ const managerHTML = require('./templates/managerHTML')
 const engineerHTML = require('./templates/engineerHTML')
 const internHTML = require('./templates/internHTML');
 
-const teamName = [];
+const teamArray = [];
 const engineerArray = [];
 const internArray = [];
 
@@ -83,11 +83,10 @@ const internArray = [];
                     choices: ['Engineer','Intern','None'],
                 }
             ]).then((engineerAnswer) => {
-                    console.log('Engineer Name: ' + engineerAnswer.Engineer)                        
-                    console.log("We are pushing the Engineer's response:")
                     teamName.push(engineerAnswer.Engineer);
                     engineerArray.push(engineerAnswer.Engineer)
-                    switch(engineerAnswer.TeamMember){
+                    console.log(engineerAnswer.name)
+                    switch(engineerAnswer.name){
                     case 'Engineer':
                         engineer();
                         break;
@@ -113,18 +112,29 @@ const internArray = [];
 
 
     async function intern(){
-        return inquirer
-        .prompt([
+        return inquirer.prompt([
             {
-                type: 'input',
-                name: 'Intern', 
-                message: 'What is the interns name? '
+                type: "input",
+                name: "internName",
+                message: "What is the intern's name?"
             }
             ,
             {
-                type: 'input',
-                name: 'InternResponsability', 
-                message: 'What is the interns responsability? '
+                type: "input",
+                name: "internId",
+                message: "What is the intern's employee ID number?" 
+            }
+            ,
+            {
+                type: "input",
+                name: "internEmail",
+                message: "What is the intern's email address?"
+            }
+            ,        
+            {
+                type: "input",
+                name: "internSchool",
+                message: "What school does the intern attend?"
             }
             ,
             {
@@ -133,12 +143,10 @@ const internArray = [];
                 message: 'Which profession would you like to add? ',
                 choices: ['Engineer','Intern','None']
             }
+
             ]).then((internAnswer) => {
-                console.log('Engineer Name: ' + internAnswer.Intern)                        
-                    console.log("We are pushing the Intern's response:")
-                    teamName.push(internAnswer.Intern);
-                    //TODO: Testing the internArray
-                    internArray.push(internAnswer)
+                const intern = new Intern(internAnswer.internName, internAnswer.internId, internAnswer.internEmail, internAnswer.internSchool);
+                teamArray.push(intern);
                 switch(internAnswer.TeamMember){
                 case 'Engineer':
                     console.log('Add an Engineer')
@@ -155,11 +163,11 @@ const internArray = [];
                     break;
                 }
 
-            }).catch((err)=>{
-                if(err){
-                console.log('Done running!');
-                }
-            })
+            // }).catch((err)=>{
+            //     if(err){
+            //     console.log('Done running!');
+            //     }
+            });
     }
 
     function finishedTeam(){
