@@ -86,14 +86,7 @@ const internArray = [];
                     console.log('Engineer Name: ' + engineerAnswer.Engineer)                        
                     console.log("We are pushing the Engineer's response:")
                     teamName.push(engineerAnswer.Engineer);
-                    engineerArray.push(engineerAnswer)
-
-                    const newEngineer = new Engineer(
-                        engineerAnswer.Engineer,
-                        engineerAnswer.EngineerResponsability,
-                        console.log("engineerAnswer.Engineer: " + engineerAnswer.Engineer),
-                        console.log("engineerAnswer.EngineerResponsability: " + engineerAnswer.EngineerResponsability)
-                        );
+                    engineerArray.push(engineerAnswer.Engineer)
                     switch(engineerAnswer.TeamMember){
                     case 'Engineer':
                         engineer();
@@ -198,7 +191,7 @@ const internArray = [];
         const myJSON = JSON.stringify(engineerArray);
         console.log('engineerArray: ' + engineerArray)
         console.log('myJSON: ' + myJSON)
-        console.log('Print my name: ' + engineerArray.Engineer)
+        console.log('Print my name: ' + myJSON.Engineer)
 
         let generatedHTML = HTML((engineerArray))
         fs.writeFile('sample.html', generatedHTML, (err)=>err? console.log(err): console.log('HTML generated successfully '))
