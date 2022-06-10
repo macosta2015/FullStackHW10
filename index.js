@@ -5,9 +5,6 @@
 const fs = require('fs');
 const inquirer = require('inquirer');
 
-//HTML Template
-const generateTeam = require("./src/page-template.js");
-
 //Library modules
 const Manager = require('./Assets/Manager')
 const Intern = require('./Assets/Intern')
@@ -19,22 +16,9 @@ const managerHTML = require('./templates/managerHTML')
 const engineerHTML = require('./templates/engineerHTML')
 const internHTML = require('./templates/internHTML');
 
-
-// const teamName = ["Team", "members"];
 const teamName = [];
 const engineerArray = [];
 const internArray = [];
-
-
-    function createTeam () {
-        console.log("new guy", newStaffMemberData)
-        fs.writeFileSync(
-        "./output/index.html",
-        generateTeam(newStaffMemberData),
-        "utf-8"
-        );
-    }
-
 
     async function managerQuestions() 
     {
@@ -189,12 +173,6 @@ const internArray = [];
         console.log("Hello, finished Team!: " + teamName)
         var myJsonStringTeam = JSON.stringify(teamName);
 
-        // var myJsonStringEngineer = JSON.stringify(engineerArray);
-        // console.log('Printing engineerObject: ')
-        // console.log(engineerArray)
-        // console.log('Printing to JSON string: ')
-        // console.log(myJsonStringEngineer)
-
         countEngineer = 0;
         for (let i of engineerArray){
             let name = i.Engineer;
@@ -203,19 +181,8 @@ const internArray = [];
             console.log('EngineerResponsability'+countEngineer+': ' + responsability)
             countEngineer++
         }
-        var myJsonStringEngineer = JSON.stringify(engineerArray);
+        // var myJsonStringEngineer = JSON.stringify(engineerArray);
 
-        
-        // console.log('What are we printing? ')
-        // console.log(myJsonStringEngineer)
-        // console.log('What are we printing? ')
-        // console.log(myJsonStringEngineer.Engineer)
-
-        var myJsonStringIntern = JSON.stringify(internArray);
-        // console.log('Printing internObject: ')
-        // console.log(internArray)
-        // console.log('Printing to JSON string: ')
-        // console.log(myJsonStringIntern)
         countIntern = 0;
         for (let i of internArray){
             let name = i.Intern;
@@ -225,32 +192,24 @@ const internArray = [];
             countIntern++
         }
 
-        HTML_GENERATOR(myJsonStringEngineer) 
+        HTML_GENERATOR(engineerArray) 
     } 
-    function HTML_GENERATOR(myJsonStringEngineer){
+    function HTML_GENERATOR(engineerArray){
+        const myJSON = JSON.stringify(engineerArray);
+        console.log('engineerArray: ' + engineerArray)
+        console.log('myJSON: ' + myJSON)
+        console.log('Print my name: ' + engineerArray.Engineer)
 
-        console.log('We are in the HTML generator')
-        console.log('myJsonStringEngineer: ' + myJsonStringEngineer)
-        console.log('myJsonStringEngineer.Engineer: ' + myJsonStringEngineer.Engineer)
-
-
-        const deconstructArray = myJsonStringEngineer
-        console.log('deconstructArray: ' + deconstructArray)
-
-        let generatedHTML = HTML((deconstructArray))
+        let generatedHTML = HTML((engineerArray))
         fs.writeFile('sample.html', generatedHTML, (err)=>err? console.log(err): console.log('HTML generated successfully '))
-
-    
-
-        console.log('After the HTM; generator')
-
+        console.log('After the HTML generator')
     }
 
     
 
 
 
-
+    //Initial code
     async function init() {
         console.log('Calling the Manager');
         const managerWait = await managerQuestions()
