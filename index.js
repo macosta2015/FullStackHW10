@@ -61,56 +61,6 @@ const internArray = [];
         })
     }
 
-    async function engineer(){
-        return inquirer
-        .prompt([
-                {
-                    type: 'input',
-                    name: 'Engineer', 
-                    message: 'What is the engineer name? '
-                }
-                ,
-                {
-                    type: 'input',
-                    name: 'EngineerResponsability', 
-                    message: 'What is the Engineer responsability? '
-                }
-                ,
-                {
-                    type: 'rawlist', 
-                    name: 'TeamMember',
-                    message: 'Which profession would you like to add? ',
-                    choices: ['Engineer','Intern','None'],
-                }
-            ]).then((engineerAnswer) => {
-                    teamName.push(engineerAnswer.Engineer);
-                    engineerArray.push(engineerAnswer.Engineer)
-                    console.log(engineerAnswer.name)
-                    switch(engineerAnswer.name){
-                    case 'Engineer':
-                        engineer();
-                        break;
-
-                    case 'Intern':
-                        console.log('Add an Intern')
-                        intern();
-                        break;
-
-                    case 'None':
-                        console.log('Finish')
-                        finishedTeam();
-                        console.log(teamName)
-                        break;
-                    }
-
-                }).catch((err)=>{
-                    if(err){
-                        console.log('Done running');
-                    }
-                })
-    } 
-
-
     async function intern(){
         return inquirer.prompt([
             {
@@ -170,11 +120,64 @@ const internArray = [];
             });
     }
 
-    function finishedTeam(){
-        console.log("Hello, finished Team!: " + teamName)
-        var myJsonStringTeam = JSON.stringify(teamName);
+
+    async function engineer(){
+        return inquirer
+        .prompt([
+                {
+                    type: 'input',
+                    name: 'Engineer', 
+                    message: 'What is the engineer name? '
+                }
+                ,
+                {
+                    type: 'input',
+                    name: 'EngineerResponsability', 
+                    message: 'What is the Engineer responsability? '
+                }
+                ,
+                {
+                    type: 'rawlist', 
+                    name: 'TeamMember',
+                    message: 'Which profession would you like to add? ',
+                    choices: ['Engineer','Intern','None'],
+                }
+            ]).then((engineerAnswer) => {
+                    engineerArray.push(engineerAnswer)
+                    switch(engineerAnswer.TeamMember){
+                    case 'Engineer':
+                        engineer();
+                        break;
+                    case 'Intern':
+                        console.log('Add an Intern')
+                        intern();
+                        break;
+                    case 'None':
+                        console.log('Finish')
+                        finishedTeam();
+                        break;
+                    }
+
+                }).catch((err)=>{
+                    if(err){
+                        console.log('Done running');
+                    }
+                })
+    } 
+
+    async function finishedTeam(){
+        console.log("Hello, finished engineerArray!: " + engineerArray)
 
         countEngineer = 0;
+
+        console.log('engineerArray: ' + engineerArray)
+        engineerArrayJSON = JSON.stringify(engineerArray)
+        console.log('engineerArrayJSON: ' + engineerArrayJSON)
+        
+
+        const engineer = engineerArray.map(engineer => engineer.Engineer);
+        console.log('engineer: ' + engineer)
+
         for (let i of engineerArray){
             let name = i.Engineer;
             let responsability = i.EngineerResponsability;
@@ -182,7 +185,6 @@ const internArray = [];
             console.log('EngineerResponsability'+countEngineer+': ' + responsability)
             countEngineer++
         }
-        // var myJsonStringEngineer = JSON.stringify(engineerArray);
 
         countIntern = 0;
         for (let i of internArray){
@@ -193,20 +195,13 @@ const internArray = [];
             countIntern++
         }
 
-        HTML_GENERATOR(engineerArray) 
+        HTML_GENERATOR(engineerArrayJSON) 
     } 
     function HTML_GENERATOR(engineerArray){
         const myJSON = JSON.stringify(engineerArray);
         console.log('engineerArray: ' + engineerArray)
         console.log('myJSON: ' + myJSON)
 
-        for (let i=0; i<engineerArray.length; i++){
-            console.log('We are in the for loop, count: ' + i)
-            console.log(engineerArray[i])
-        }
-
-        engineerArray
-        
         let generatedHTML = HTML((engineerArray))
         fs.writeFile('sample.html', generatedHTML, (err)=>err? console.log(err): console.log('HTML generated successfully '))
         console.log('After the HTML generator')
