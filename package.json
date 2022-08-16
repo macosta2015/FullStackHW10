@@ -10,15 +10,15 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/mushymane/team-profile-generator.git"
+    "url": "git+https://github.com/macosta2015/Team_profile_generator"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/mushymane/team-profile-generator/issues"
+    "url": "https://github.com/macosta2015/Team_profile_generator/issues"
   },
-  "homepage": "https://github.com/mushymane/team-profile-generator#readme",
+  "homepage": "https://github.com/macosta2015/Team_profile_generator/readme",
   "dependencies": {
     "inquirer": "^8.2.0"
   },

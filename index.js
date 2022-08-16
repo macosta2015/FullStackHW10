@@ -1,6 +1,5 @@
 //HomeWork 10
 
-
 //node modueles 
 const fs = require('fs');
 const inquirer = require('inquirer');
@@ -16,12 +15,12 @@ const managerHTML = require('./templates/managerHTML')
 const engineerHTML = require('./templates/engineerHTML')
 const internHTML = require('./templates/internHTML');
 
-const teamArray = [];
+var teamArray = [];
 const engineerArray = [];
 const internArray = [];
+const managerArray = []
 
-    async function managerQuestions() 
-    {
+    async function managerQuestions() {
         return inquirer
         .prompt([
             {
@@ -42,6 +41,8 @@ const internArray = [];
             }
         ])
         .then((userAnswer) => {
+            managerArray.push(userAnswer)
+            console.log('managerArray ANSWER: ' + managerArray)
             switch(userAnswer.TeamMember){
             case 'Engineer':
                 console.log('Add an Engineer')
@@ -62,7 +63,8 @@ const internArray = [];
     }
 
     async function intern(){
-        return inquirer.prompt([
+        return inquirer
+        .prompt([
             {
                 type: "input",
                 name: "internName",
@@ -93,10 +95,10 @@ const internArray = [];
                 message: 'Which profession would you like to add? ',
                 choices: ['Engineer','Intern','None']
             }
-
             ]).then((internAnswer) => {
-                const intern = new Intern(internAnswer.internName, internAnswer.internId, internAnswer.internEmail, internAnswer.internSchool);
-                teamArray.push(intern);
+                internArray.push(internAnswer)
+                // const intern = new Intern(internAnswer.internName, internAnswer.internId, internAnswer.internEmail, internAnswer.internSchool);
+                // teamArray.push(intern);
                 switch(internAnswer.TeamMember){
                 case 'Engineer':
                     console.log('Add an Engineer')
@@ -108,7 +110,6 @@ const internArray = [];
                     break;
                 case 'None':
                     console.log('Finish')
-                    console.log(teamName)
                     finishedTeam();
                     break;
                 }
@@ -119,7 +120,6 @@ const internArray = [];
             //     }
             });
     }
-
 
     async function engineer(){
         return inquirer
@@ -160,56 +160,82 @@ const internArray = [];
 
                 }).catch((err)=>{
                     if(err){
-                        console.log('Done running');
+                        console.log('NOT Running');
                     }
                 })
     } 
 
     async function finishedTeam(){
-        console.log("Hello, finished engineerArray!: " + engineerArray)
+        // console.log("Hello, finished engineerArray!: " + engineerArray)
 
-        countEngineer = 0;
+        // countEngineer = 0;
 
-        console.log('engineerArray: ' + engineerArray)
-        engineerArrayJSON = JSON.stringify(engineerArray)
-        console.log('engineerArrayJSON: ' + engineerArrayJSON)
+        // console.log('engineerArray: ' + engineerArray)
+        // engineerArrayJSON = JSON.stringify(engineerArray)
+        // console.log('engineerArrayJSON: ' + engineerArrayJSON)
         
+        // const engineerEngineer = engineerArray.map(engineer => engineer.Engineer);
+        // console.log('engineer: map ' + engineerEngineer)
 
-        const engineer = engineerArray.map(engineer => engineer.Engineer);
-        console.log('engineer: ' + engineer)
+        // const engineerResponsability = engineerArray.map(engineer => engineer.EngineerResponsability);
+        // console.log('engineer: map ' + engineerResponsability)
 
-        for (let i of engineerArray){
-            let name = i.Engineer;
-            let responsability = i.EngineerResponsability;
-            console.log('Engineer'+countEngineer+': ' + name)
-            console.log('EngineerResponsability'+countEngineer+': ' + responsability)
-            countEngineer++
-        }
+        // const engineerTeamMember = engineerArray.map(engineer => engineer.TeamMember);
+        // console.log('engineer: map ' + engineerTeamMember)
 
-        countIntern = 0;
-        for (let i of internArray){
-            let name = i.Intern;
-            let responsability = i.InternResponsability;
-            console.log('Intern'+countIntern+': ' + name)
-            console.log('InternResponsability'+countIntern+': ' + responsability)
-            countIntern++
-        }
+        // for (let i of engineerArray){
+        //     let name = i.Engineer;
+        //     let responsability = i.EngineerResponsability;
+        //     console.log('Engineer'+countEngineer+': ' + name)
+        //     console.log('EngineerResponsability'+countEngineer+': ' + responsability)
+        //     countEngineer++
+        // }
 
-        HTML_GENERATOR(engineerArrayJSON) 
+        // countIntern = 0;
+        // for (let i of internArray){
+        //     let name = i.Intern;
+        //     let responsability = i.InternResponsability;
+        //     console.log('Intern'+countIntern+': ' + name)
+        //     console.log('InternResponsability'+countIntern+': ' + responsability)
+        //     countIntern++
+        // }
+
+        engineerArrayJSON = JSON.stringify(engineerArray)
+        internArrayJSON = JSON.stringify(internArray)
+        managerArrayJSON = JSON.stringify(managerArray)
+
+        console.log('engineerArrayJSON: ' + engineerArrayJSON)
+        console.log('internArrayJSON: ' + internArrayJSON)
+        console.log('managerArrayJSON: ' + managerArrayJSON)
+
+
+        // const employeeArray = [engineerArrayJSON, ...internArrayJSON];
+        // let merged = {...engineerArrayJSON, ...internArrayJSON};
+        // const employeeArray = engineerArrayJSON.merge(internArrayJSON)
+        // console.log('This is the  merged: ' + merged)
+
+        //Setting the arrays together 
+        Array.prototype.push.apply(managerArray,engineerArray); 
+        Array.prototype.push.apply(managerArray,internArray); 
+
+        teamArray = managerArray;
+        console.log('What is the status of the teamArray: ? ');  // final merged result will be in arr1
+        console.log(teamArray);  // final merged result will be in arr1
+        
+        HTML_GENERATOR(teamArray) 
     } 
-    function HTML_GENERATOR(engineerArray){
-        const myJSON = JSON.stringify(engineerArray);
-        console.log('engineerArray: ' + engineerArray)
-        console.log('myJSON: ' + myJSON)
 
-        let generatedHTML = HTML((engineerArray))
+    function HTML_GENERATOR(internArray){ //Testing the intern array
+        const myJSON = JSON.stringify(internArray);
+        console.log('JSON.stringify: ' + myJSON)
+        // console.log('internArray: ' + internArray) //Prints out object and object
+
+        let generatedHTML = HTML((internArray))
         fs.writeFile('sample.html', generatedHTML, (err)=>err? console.log(err): console.log('HTML generated successfully '))
         console.log('After the HTML generator')
     }
 
     
-
-
 
     //Initial code
     async function init() {
@@ -221,10 +247,10 @@ const internArray = [];
     
 
 
-            // Documentations
+// Documentations
 
-            // Why Is Array/Object Destructuring So Useful And How To Use It
-            // https://www.youtube.com/watch?v=NIq3qLaHCIs
+// Why Is Array/Object Destructuring So Useful And How To Use It
+// https://www.youtube.com/watch?v=NIq3qLaHCIs
 
-            // Array to JSON format
-            // https://stackoverflow.com/questions/2295496/convert-array-to-json
+// Array to JSON format
+// https://stackoverflow.com/questions/2295496/convert-array-to-json
