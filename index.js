@@ -225,12 +225,12 @@ const managerArray = []
         HTML_GENERATOR(teamArray) 
     } 
 
-    function HTML_GENERATOR(internArray){ //Testing the intern array
-        const myJSON = JSON.stringify(internArray);
+    function HTML_GENERATOR(teamArray){ //Testing the intern array
+        const myJSON = JSON.stringify(teamArray);
         console.log('JSON.stringify: ' + myJSON)
         // console.log('internArray: ' + internArray) //Prints out object and object
 
-        let generatedHTML = HTML((internArray))
+        let generatedHTML = HTML((myJSON))
         fs.writeFile('sample.html', generatedHTML, (err)=>err? console.log(err): console.log('HTML generated successfully '))
         console.log('After the HTML generator')
     }
