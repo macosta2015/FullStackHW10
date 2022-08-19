@@ -19,6 +19,7 @@ var teamArray = [];
 const engineerArray = [];
 const internArray = [];
 const managerArray = []
+const employeeArray = [];
 
     async function managerQuestions() {
         return inquirer
@@ -166,39 +167,7 @@ const managerArray = []
     } 
 
     async function finishedTeam(){
-        // console.log("Hello, finished engineerArray!: " + engineerArray)
 
-        // countEngineer = 0;
-
-        // console.log('engineerArray: ' + engineerArray)
-        // engineerArrayJSON = JSON.stringify(engineerArray)
-        // console.log('engineerArrayJSON: ' + engineerArrayJSON)
-        
-        // const engineerEngineer = engineerArray.map(engineer => engineer.Engineer);
-        // console.log('engineer: map ' + engineerEngineer)
-
-        // const engineerResponsability = engineerArray.map(engineer => engineer.EngineerResponsability);
-        // console.log('engineer: map ' + engineerResponsability)
-
-        // const engineerTeamMember = engineerArray.map(engineer => engineer.TeamMember);
-        // console.log('engineer: map ' + engineerTeamMember)
-
-        // for (let i of engineerArray){
-        //     let name = i.Engineer;
-        //     let responsability = i.EngineerResponsability;
-        //     console.log('Engineer'+countEngineer+': ' + name)
-        //     console.log('EngineerResponsability'+countEngineer+': ' + responsability)
-        //     countEngineer++
-        // }
-
-        // countIntern = 0;
-        // for (let i of internArray){
-        //     let name = i.Intern;
-        //     let responsability = i.InternResponsability;
-        //     console.log('Intern'+countIntern+': ' + name)
-        //     console.log('InternResponsability'+countIntern+': ' + responsability)
-        //     countIntern++
-        // }
 
         engineerArrayJSON = JSON.stringify(engineerArray)
         internArrayJSON = JSON.stringify(internArray)
@@ -208,17 +177,12 @@ const managerArray = []
         console.log('internArrayJSON: ' + internArrayJSON)
         console.log('managerArrayJSON: ' + managerArrayJSON)
 
-
-        // const employeeArray = [engineerArrayJSON, ...internArrayJSON];
-        // let merged = {...engineerArrayJSON, ...internArrayJSON};
-        // const employeeArray = engineerArrayJSON.merge(internArrayJSON)
-        // console.log('This is the  merged: ' + merged)
-
         //Setting the arrays together 
-        Array.prototype.push.apply(managerArray,engineerArray); 
-        Array.prototype.push.apply(managerArray,internArray); 
+        Array.prototype.push.apply(employeeArray,managerArray); 
+        Array.prototype.push.apply(employeeArray,engineerArray); 
+        Array.prototype.push.apply(employeeArray,internArray); 
 
-        teamArray = managerArray;
+        teamArray = employeeArray;
         console.log('What is the status of the teamArray: ? ');  // final merged result will be in arr1
         console.log(teamArray);  // final merged result will be in arr1
         
@@ -226,11 +190,11 @@ const managerArray = []
     } 
 
     function HTML_GENERATOR(teamArray){ //Testing the intern array
+        // console.log("teamArray: " + teamArray);
         const myJSON = JSON.stringify(teamArray);
-        console.log('JSON.stringify: ' + myJSON)
-        // console.log('internArray: ' + internArray) //Prints out object and object
+        console.log('myJSON: ' + myJSON)
 
-        let generatedHTML = HTML((myJSON))
+        let generatedHTML = HTML((teamArray))
         fs.writeFile('sample.html', generatedHTML, (err)=>err? console.log(err): console.log('HTML generated successfully '))
         console.log('After the HTML generator')
     }
