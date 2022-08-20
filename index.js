@@ -194,7 +194,7 @@ const employeeArray = [];
         const myJSON = JSON.stringify(teamArray);
         console.log('myJSON: ' + myJSON)
 
-        let generatedHTML = HTML((teamArray))
+        let generatedHTML = HTML((myJSON))
         fs.writeFile('sample.html', generatedHTML, (err)=>err? console.log(err): console.log('HTML generated successfully '))
         console.log('After the HTML generator')
     }
